@@ -6,14 +6,22 @@ object BonusCalculator extends App {
   val employee = readLine("What is your name?")
   println(s"Nice to talk to you $employee!")
 
-  val workYears = readLine(s"$employee, how many years have you worked here?").trim.toInt
-  val wageAmount = readLine(s"$employee, how much is your monthly wage?").trim.toInt
+  val workYears = readLine(s"$employee, how many years have you worked here?").trim.toFloat
+  val wageAmount = readLine(s"$employee, how much is your monthly wage?").trim.toFloat
 
-  if (workYears <= 2) {
-    println(s"Thank you $employee for all your hard work! Happy holidays!")}
-  else if (workYears > 2) {
-    val bonusYears = workYears - 2
+  val minTenure = 2
+  val maxTenure = 10
+  if (workYears <= minTenure) {
+    println(s"Thank you $employee for all your hard work! Happy holidays!")
+  }
+  else if (workYears > minTenure && workYears < maxTenure) {
+    val bonusYears = workYears - minTenure
     val bonusAmount = bonusYears * 0.15 * wageAmount
-    println(s"Thank you $employee for all your hard work! Happy holidays! You will receive a holiday bonus of ${bonusAmount.toInt} euros.")}
+    println(s"Thank you $employee for all your hard work! Happy holidays! You will receive a holiday bonus of ${bonusAmount.toFloat} euros.")
+  }
+  else if (workYears >= maxTenure) {
+    val bonusAmount = maxTenure * 0.15 * wageAmount
+    println(s"Thank you $employee for all your hard work! Happy holidays! You will receive a holiday bonus of ${bonusAmount.toFloat} euros.")
+  }
 
 }
